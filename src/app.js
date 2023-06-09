@@ -1,6 +1,7 @@
 import express from "express"
 const app = express()
 const PORT = 8080
+const srteverRoutes = require("./routes");
 app.use(express.json())
 app.use(express.urlencoded({
     extended: true
@@ -15,7 +16,7 @@ app.get ("/kepio", (req, res)=>{
 
 
 // Cargar los productos desde el archivo
-const productsData = JSON.parse(fs.readFileSync('productsRouter.json'));
+const productsData = JSON.parse(fs.readFileSync('./routes/productsRouter.json'));
 
 // Ruta para obtener todos los productos o un número limitado de ellos
 app.get('/products', (req, res) => {
@@ -30,7 +31,7 @@ app.get('/products', (req, res) => {
 });
 
 // Ruta para obtener un producto por su ID
-app.get('./productsRouters.js/:id', (req, res) => {
+app.get('./routes/productsRouters.js/:id', (req, res) => {
   const { id } = req.params;
   const product = productsData.find(p => p.id === parseInt(id));
 
